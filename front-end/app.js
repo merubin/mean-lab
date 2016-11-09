@@ -34,8 +34,9 @@ function Router($stateProvider, $locationProvider){
 function PhotoFactoryFunction($resource){
   console.log("PhotoFactoryFunction running");
   // ???????????
-  return $resource("http://localhost:3000/", {}, {
-    update: {method: "PUT"}
+  // return $resource("http://localhost:3000/", {}, {
+  return $resource("https://git.heroku.com/smile-be.git/", {}, {
+    create: {method: "POST"}
   })
 }
 
@@ -43,6 +44,18 @@ function PhotoIndexControllerFunction(PhotoFactory, $location){
   console.log("PhotoIndexControllerFunction running");
   console.log(PhotoFactory);
   this.photos = PhotoFactory.query()
+  this.create = function() {
+    console.log("Form submited CREATE")
+    PhotoFactory.create({
+      name: this.newPhoto.name,
+      description: this.newPhoto.description,
+      photoUrl: this.newPhoto.photoUrl
+    }).$promise.then(  () => {
+      console.log("CREATE then")
+      this.photos = PhotoFactory.query()
+    })
+
+  }
 }
 
 console.log("end of app.js");
