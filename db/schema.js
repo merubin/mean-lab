@@ -1,9 +1,9 @@
-var mongoose = require("mongoose")
+var mongoose = require("./connection.js")
 var Schema = mongoose.Schema
 var ObjectId = Schema.ObjectId
 
 var GallerySchema = new Schema( {
-  name:string
+  name: String
 })
 
 var PhotoSchema = new Schema({
