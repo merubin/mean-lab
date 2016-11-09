@@ -1,0 +1,9 @@
+<h1>Photos</h1>
+<div class="photos" data-ng-repeat="photo in vm.photos">
+  <div class="photo">
+    <p>
+      {{ photo.name }}
+    </p>
+    <img src="{{ photo.photoUrl }}" alt="{{ photo.name }}" />
+  </div>
+</div>
