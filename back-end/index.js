@@ -12,8 +12,14 @@ Smile captures your photos and allows you to add title, and description for late
  var Photo =  schema.Photo
 
 
- app.set("port", process.env.PORT || 3000);
- app.use("/assets", express.static("public"));
+app.set("port", process.env.PORT || 3000);
+app.use("/assets", express.static("public"));
+
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+})
 
 app.get("/",function (req,res){
   console.log("Root route ")
@@ -21,8 +27,6 @@ app.get("/",function (req,res){
       res.json(photos);
   })
 })
-
-
 
  app.listen(app.get("port"),function(){
      console.log("Smile for your photos!")
